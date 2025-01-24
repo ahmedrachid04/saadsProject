@@ -27,7 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5r$_8pn04xsd^3gpr-(rp-r6o-4g&&6(t&n^9k1u2_jnxj7^^n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+PORT = os.getenv('PORT', '8000')
+
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [os.getenv('RENDER_EXTERNAL_HOSTNAME', '127.0.0.1')]
 
@@ -130,8 +132,10 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
-STATIC_URL = 'static/'
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR, "projet/static")]
 

@@ -29,8 +29,7 @@ SECRET_KEY = 'django-insecure-5r$_8pn04xsd^3gpr-(rp-r6o-4g&&6(t&n^9k1u2_jnxj7^^n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://saadsproject.onrender.com', '127.0.0.1']
-
+ALLOWED_HOSTS = [os.getenv('RENDER_EXTERNAL_HOSTNAME', '127.0.0.1')]
 
 # Application definition
 
@@ -147,6 +146,7 @@ EMAIL_HOST_PASSWORD = 'wvbe rkvv hpil bmhq' # remplacer avec votre mot de passe 
 
 ###########################"
 
+print(f"Running on PORT: {os.getenv('PORT')}")
 
 
 
